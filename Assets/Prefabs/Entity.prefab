@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5549449053801722653}
   - component: {fileID: 5453391368511591268}
   - component: {fileID: -5647290903331226435}
-  - component: {fileID: 7466734181908083498}
+  - component: {fileID: 7538286282462528021}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2
   fallSpeed: 5
---- !u!114 &7466734181908083498
+--- !u!114 &7538286282462528021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,6 +69,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3529906952412613771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b555642d5ac842ec82f1d9dfbf97ee6, type: 3}
+  m_Script: {fileID: 11500000, guid: fc346f122f4994c11a59dc1d7044394c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability: {fileID: 11400000, guid: 3f03d7d0125f8473f84f492180a3b778, type: 2}
