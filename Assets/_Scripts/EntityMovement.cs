@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Entity : MonoBehaviour
+public class EntityMovement : MonoBehaviour
 {
-
-    private EntityAbility ability;
-    private EntityMovement movement;
-
+    [Header("Movement Properties")]
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float fallSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        ability = GetComponent<EntityAbility>();
-        movement = GetComponent<EntityMovement>();
+        
     }
 
     // Update is called once per frame

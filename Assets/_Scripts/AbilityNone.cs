@@ -2,19 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Entity : MonoBehaviour
+public class AbilityNone : MonoBehaviour
 {
-
-    private EntityAbility ability;
-    private EntityMovement movement;
-
-
     // Start is called before the first frame update
     void Start()
     {
-        ability = GetComponent<EntityAbility>();
-        movement = GetComponent<EntityMovement>();
+        
     }
 
     // Update is called once per frame
