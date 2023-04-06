@@ -9,6 +9,8 @@ public class EntityMovement : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private float fallSpeed;
     private int movementDirection;
+    private float changeDirCooldown = 0.2f;
+    private float changeDirTime = 0f;
 
     //physics variables
     private Rigidbody2D rb;
@@ -16,8 +18,14 @@ public class EntityMovement : MonoBehaviour
     //Raycast related variables
     [Header("Raycast Variables")]
     [SerializeField] private LayerMask rayLayerMask;
+    [SerializeField] private Transform RightOrigin;
+    [SerializeField] private Transform LeftOrigin;
+    [SerializeField] private Transform RightLower;
+    [SerializeField] private Transform LeftLower;
     private RaycastHit2D rayhit1;
     private RaycastHit2D rayhit2;
+    private RaycastHit2D rayhit3;
+    private RaycastHit2D rayhit4;
     private Vector2 temp;
     private bool grounded;
 
@@ -41,6 +49,20 @@ public class EntityMovement : MonoBehaviour
             grounded = true;
         else
             grounded = false;
+
+        if (changeDirTime <= 0)
+        {
+            if (changeDirection())
+            {
+                movementDirection *= -1;
+            }
+            changeDirTime = changeDirCooldown;
+        }
+        else
+        {
+            changeDirTime -= Time.deltaTime;
+        }
+
     }
 
     private void FixedUpdate()
@@ -57,25 +79,49 @@ public class EntityMovement : MonoBehaviour
 
     private bool isGrounded()
     {
-        float raycastDistance=0.52f;
-        Vector3 leftOrigin = this.transform.position - new Vector3(0.5f, 0f, 0f);
-        Vector3 rightOrigin = this.transform.position + new Vector3(0.5f, 0f, 0f);
-        Vector2 leftDir = (this.transform.position + new Vector3(-0.55f, -raycastDistance, 0f)) - leftOrigin;
-        Vector2 rightDir = (this.transform.position + new Vector3(0.55f,-raycastDistance, 0f)) - rightOrigin;
-        rayhit1 = Physics2D.Raycast(rightOrigin, rightDir, raycastDistance, rayLayerMask);
-        rayhit2 = Physics2D.Raycast(leftOrigin, leftDir, raycastDistance, rayLayerMask);
+        float raycastDistanceDown=0.52f;
+        Vector3 leftDir = LeftLower.position - LeftOrigin.position;
+        Vector3 rightDir =  RightLower.position - RightOrigin.position;
+        rayhit1 = Physics2D.Raycast(RightOrigin.position, rightDir, raycastDistanceDown, rayLayerMask);
+        rayhit2 = Physics2D.Raycast(LeftOrigin.position, leftDir, raycastDistanceDown, rayLayerMask);
 
         if (drawRaycasts)
         {
-            Debug.DrawRay(leftOrigin, leftDir, Color.red, 0.01f);
-            Debug.DrawRay(rightOrigin, rightDir, Color.red, 0.01f);
-
+            Debug.DrawRay(LeftOrigin.position, leftDir, Color.red, 0.01f);
+            Debug.DrawRay(RightOrigin.position, rightDir, Color.red, 0.01f);
         }
         if (rayhit1.collider == null && rayhit2.collider == null)
         {
             return false;
         }
         if ((rayhit1.collider!=null && rayhit1.collider.tag == "ground") || (rayhit2.collider!=null && rayhit2.collider.tag == "ground"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool changeDirection()
+    {
+        //change direction
+        float raycastDistanceHoriz = 0.05f;
+
+        rayhit3 = Physics2D.Raycast(RightOrigin.position, Vector3.right, raycastDistanceHoriz, rayLayerMask);
+        rayhit4 = Physics2D.Raycast(LeftOrigin.position, Vector3.left, raycastDistanceHoriz, rayLayerMask);
+        if (drawRaycasts)
+        {
+            Debug.DrawRay(LeftOrigin.position, Vector3.right * raycastDistanceHoriz, Color.red, 0.01f);
+            Debug.DrawRay(RightOrigin.position, Vector3.left * raycastDistanceHoriz, Color.red, 0.01f);
+        }
+
+        if(rayhit3.collider!=null && rayhit3.collider.tag == "ground")
+        {
+            return true;
+        }
+        else if (rayhit4.collider != null && rayhit4.collider.tag == "ground")
         {
             return true;
         }
