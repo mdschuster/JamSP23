@@ -19,6 +19,32 @@ public class EntityAbility : MonoBehaviour
 
     public void updateAbility(Ability ability)
     {
+        if(this.ability == GameManager.instance().detonator)
+        {
+            return;
+        }
+        if (this.ability == GameManager.instance().blocker)
+        {
+            if(ability== GameManager.instance().detonator)
+            {
+                this.ability = ability;
+                return;
+            }
+            else
+            {
+                return;
+            }
+        }
         this.ability = ability;
+    }
+
+    public Ability getCurrentAbility()
+    {
+        return ability;
+    }
+
+    public void death()
+    {
+        Destroy(this.gameObject);
     }
 }

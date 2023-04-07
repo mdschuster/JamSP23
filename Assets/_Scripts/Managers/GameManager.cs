@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public Ability none;
     public Ability blocker;
     public Ability faller;
+    public Ability detonator;
 
     private Ability selectedAbility;
 
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         return selectedAbility;
     }
 
+    //called from buttons
     public void setAbility(Ability a)
     {
         selectedAbility = a;
