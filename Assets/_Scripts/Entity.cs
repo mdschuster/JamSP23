@@ -19,5 +19,12 @@ public class Entity : MonoBehaviour
         movement = GetComponent<EntityMovement>();
     }
 
-    
+
+    private void OnMouseDown()
+    {
+        Ability selectedAbility = GameManager.instance().getSelectedAbility();
+        ability.updateAbility(selectedAbility);
+    }
+
+
 }

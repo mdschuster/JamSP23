@@ -16,4 +16,9 @@ public class EntityAbility : MonoBehaviour
     {
         return ability.fallSpeedModifier;
     }
+
+    public void updateAbility(Ability ability)
+    {
+        this.ability = ability;
+    }
 }

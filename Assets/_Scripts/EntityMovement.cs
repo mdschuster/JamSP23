@@ -34,10 +34,13 @@ public class EntityMovement : MonoBehaviour
 
 
 
+    private EntityAbility entityAbility;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        entityAbility = GetComponent<EntityAbility>();
         rb = GetComponent<Rigidbody2D>();
         movementDirection = 1;
     }
@@ -136,13 +139,13 @@ public class EntityMovement : MonoBehaviour
     {
         //move only in y at fall speed;
         temp.x = 0;
-        temp.y = -fallSpeed;
+        temp.y = -fallSpeed*entityAbility.getModifiedFallSpeed();
         rb.velocity = temp;
     }
 
     private void move()
     {
-        temp.x = movementDirection * walkSpeed;
+        temp.x = movementDirection * walkSpeed * entityAbility.getModifiedMovementSpeed();
         temp.y = 0;
         rb.velocity = temp;
     }
