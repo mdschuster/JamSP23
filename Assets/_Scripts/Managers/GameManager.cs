@@ -49,4 +49,9 @@ public class GameManager : MonoBehaviour
     {
         return selectedAbility;
     }
+
+    public void setAbility(Ability a)
+    {
+        selectedAbility = a;
+    }
 }
