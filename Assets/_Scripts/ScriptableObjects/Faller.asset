@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Faller
   m_EditorClassIdentifier: 
   movementSpeedModifier: 1
-  fallSpeedModifier: 0.25
+  fallSpeedModifier: 0.5
   hasTimer: 0
   time: 0

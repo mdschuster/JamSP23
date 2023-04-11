@@ -58,7 +58,10 @@ public class Entity : MonoBehaviour
         {
             if (fallTime >= movement.maxFallTime)
             {
-                ability.death();
+                if (ability.getCurrentAbility().fallSpeedModifier > 0.75)
+                {
+                    ability.death();
+                }
             }
             falling = false;
             fallTime = 0;
@@ -71,7 +74,9 @@ public class Entity : MonoBehaviour
             if (timer <= 0)
             {
                 TimerCanvas.gameObject.SetActive(false);
+
                 timerEndFunction?.Invoke();
+
             }
             else
             {

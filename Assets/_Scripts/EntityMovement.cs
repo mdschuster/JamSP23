@@ -164,4 +164,17 @@ public class EntityMovement : MonoBehaviour
     {
         return grounded;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "lava")
+        {
+            entityAbility.death();
+        }
+        if(collision.gameObject.tag == "grinder")
+        {
+            GameManager.instance().score();
+            entityAbility.death();
+        }
+    }
 }

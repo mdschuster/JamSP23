@@ -31,11 +31,14 @@ public class GameManager : MonoBehaviour
     public Ability faller;
     public Ability detonator;
 
+    private int Score;
+
     private Ability selectedAbility;
 
     // Start is called before the first frame update
     void Start()
     {
+        Score = 0;
         selectedAbility = faller;
     }
 
@@ -55,5 +58,11 @@ public class GameManager : MonoBehaviour
     public void setAbility(Ability a)
     {
         selectedAbility = a;
+    }
+
+    public void score()
+    {
+        Score++;
+        //update UI text here
     }
 }
