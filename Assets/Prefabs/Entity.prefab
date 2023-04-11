@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 1
   fallSpeed: 3
-  maxFallTime: 5
+  maxFallTime: 2
   rayLayerMask:
     serializedVersion: 2
     m_Bits: 128

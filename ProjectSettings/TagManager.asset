@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ground
   - entity
+  - grinder
+  - lava
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Entity
   - Ground
   - Blocker
-  - 
+  - CameraConfiner
   - 
   - 
   - 
