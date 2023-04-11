@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour
     private EntityMovement movement;
     public TMP_Text TimerText;
     public Canvas TimerCanvas;
+    public LayerMask layerMask;
 
     private float timer;
 
@@ -45,7 +46,7 @@ public class Entity : MonoBehaviour
     }
 
     private void Update()
-    {
+    { 
         if (!movement.getGrounded())
         {
             falling = true;

@@ -20,7 +20,7 @@ public class EntityAbility : MonoBehaviour
 
     public bool updateAbility(Ability ability)
     {
-        if(this.ability == GameManager.instance().detonator)
+        if (this.ability == GameManager.instance().detonator)
         {
             return false;
         }
@@ -28,6 +28,7 @@ public class EntityAbility : MonoBehaviour
         {
             if(ability== GameManager.instance().detonator)
             {
+                
                 float fallspeed = this.ability.fallSpeedModifier;
                 float movespeed = this.ability.movementSpeedModifier;
                 this.ability = ability;

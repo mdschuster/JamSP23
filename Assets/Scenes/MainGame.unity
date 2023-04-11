@@ -539,7 +539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 177671658}
   - component: {fileID: 177671657}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: CameraConfiner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f44949da5ce4a109784b22d2f839bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberToSpawn: 1
+  numberToSpawn: 10
   timeBetweenSpawns: 0.5
   animator: {fileID: 2072031082}
 --- !u!4 &441376027
@@ -1334,7 +1334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091527509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49, y: 0.18, z: 0}
+  m_LocalPosition: {x: -0.49, y: 0.162, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4128,7 +4128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470977391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.16, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0.16, y: -0.51799965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4186,7 +4186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508772221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.81, y: 0.19, z: 0}
+  m_LocalPosition: {x: 0.81, y: 0.17200035, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
