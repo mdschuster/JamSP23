@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +32,12 @@ public class GameManager : MonoBehaviour
     public Ability faller;
     public Ability detonator;
 
+    public SpawnManager spawnManager;
+    private int maxEntites;
+
+    [Header("UI")]
+    public TMP_Text scoreText;
+
     private int Score;
 
     private Ability selectedAbility;
@@ -38,7 +45,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Score = 0;
+        Score = -1;
+        score();
         selectedAbility = faller;
     }
 
@@ -63,6 +71,6 @@ public class GameManager : MonoBehaviour
     public void score()
     {
         Score++;
-        //update UI text here
+        scoreText.text = "Harvested:\n" +Score+"/" + spawnManager.getMaxEntites();
     }
 }

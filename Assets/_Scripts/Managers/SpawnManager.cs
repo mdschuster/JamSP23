@@ -16,6 +16,7 @@ public class SpawnManager : MonoBehaviour
     private AnimatorStateInfo animatorStateInfo;
 
     private int count;
+    private List<GameObject> entites;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class SpawnManager : MonoBehaviour
         count = 0;
         factory = GetComponent<IFactory>();
         spawnTime = timeBetweenSpawns;
+        entites = new List<GameObject>(numberToSpawn);
     }
 
     // Update is called once per frame
@@ -35,7 +37,9 @@ public class SpawnManager : MonoBehaviour
 
         if (spawnTime <= 0)
         {
-            factory.Produce();
+            GameObject go =factory.Produce();
+            go.GetComponent<Entity>().onDeathAction += removeEntity;
+            entites.Add(go);
             spawnTime = timeBetweenSpawns;
             count++;
         }
@@ -43,5 +47,20 @@ public class SpawnManager : MonoBehaviour
         {
             spawnTime -= Time.deltaTime;
         }
+    }
+
+    public void removeEntity(GameObject go)
+    {
+        entites.Remove(go);
+    }
+
+    public int getMaxEntites()
+    {
+        return numberToSpawn;
+    }
+
+    public int getCurrentEntityNum()
+    {
+        return entites.Count;
     }
 }

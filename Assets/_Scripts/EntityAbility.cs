@@ -7,7 +7,7 @@ public class EntityAbility : MonoBehaviour
 
     [Header("Ability Data")]
     [SerializeField] private Ability ability;
-    [SerializeField] private GameObject DeathFX;
+    public GameObject DeathFX;
 
     public float getModifiedMovementSpeed()
     {
@@ -71,11 +71,5 @@ public class EntityAbility : MonoBehaviour
     public Ability getCurrentAbility()
     {
         return ability;
-    }
-
-    public void death()
-    {
-        Instantiate(DeathFX, this.transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
     }
 }

@@ -36,6 +36,7 @@ public class EntityMovement : MonoBehaviour
 
 
 
+    private Entity entity;
     private EntityAbility entityAbility;
     public System.Action DirectionAction;
 
@@ -44,6 +45,7 @@ public class EntityMovement : MonoBehaviour
     void Start()
     {
 
+        entity = GetComponent<Entity>();
         entityAbility = GetComponent<EntityAbility>();
         rb = GetComponent<Rigidbody2D>();
         movementDirection = 1;
@@ -169,12 +171,12 @@ public class EntityMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "lava")
         {
-            entityAbility.death();
+            entity.death();
         }
         if(collision.gameObject.tag == "grinder")
         {
             GameManager.instance().score();
-            entityAbility.death();
+            entity.death();
         }
     }
 }

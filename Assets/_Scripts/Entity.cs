@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
 
 
     private float fallTime;
+    public System.Action<GameObject> onDeathAction;
 
 
 
@@ -60,7 +61,7 @@ public class Entity : MonoBehaviour
             {
                 if (ability.getCurrentAbility().fallSpeedModifier > 0.75)
                 {
-                    ability.death();
+                    death();
                 }
             }
             falling = false;
@@ -111,13 +112,20 @@ public class Entity : MonoBehaviour
         }
         if (selectedAbility == GameManager.instance().detonator)
         {
-            timerEndFunction += ability.death;
+            timerEndFunction += death;
         }
     }
 
     private void changeDirection()
     {
         graphic.transform.RotateAround(transform.position, transform.up, 180f);
+    }
+
+    public void death()
+    {
+        onDeathAction?.Invoke(this.gameObject);
+        Instantiate(ability.DeathFX, this.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 
 }
