@@ -11,6 +11,7 @@ public class EntityMovement : MonoBehaviour
     private int movementDirection;
     private float changeDirCooldown = 0.2f;
     private float changeDirTime = 0f;
+    public float maxFallTime;
 
     //physics variables
     private Rigidbody2D rb;
@@ -29,17 +30,20 @@ public class EntityMovement : MonoBehaviour
     private Vector2 temp;
     private bool grounded;
 
+
     [Header("Debug Variables")]
     [SerializeField] private bool drawRaycasts;
 
 
 
     private EntityAbility entityAbility;
+    public System.Action DirectionAction;
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         entityAbility = GetComponent<EntityAbility>();
         rb = GetComponent<Rigidbody2D>();
         movementDirection = 1;
@@ -82,11 +86,10 @@ public class EntityMovement : MonoBehaviour
 
     private bool isGrounded()
     {
-        float raycastDistanceDown=0.52f;
         Vector3 leftDir = LeftLower.position - LeftOrigin.position;
         Vector3 rightDir =  RightLower.position - RightOrigin.position;
-        rayhit1 = Physics2D.Raycast(RightOrigin.position, rightDir, raycastDistanceDown, rayLayerMask);
-        rayhit2 = Physics2D.Raycast(LeftOrigin.position, leftDir, raycastDistanceDown, rayLayerMask);
+        rayhit1 = Physics2D.Raycast(RightOrigin.position, rightDir, rightDir.magnitude, rayLayerMask);
+        rayhit2 = Physics2D.Raycast(LeftOrigin.position, leftDir, leftDir.magnitude, rayLayerMask);
 
         if (drawRaycasts)
         {
@@ -109,8 +112,11 @@ public class EntityMovement : MonoBehaviour
 
     private bool changeDirection()
     {
+        if (entityAbility.getCurrentAbility().movementSpeedModifier==0) return false;
+        if (!isGrounded()) return false;
+
         //change direction
-        float raycastDistanceHoriz = 0.05f;
+        float raycastDistanceHoriz = 0.075f;
 
         rayhit3 = Physics2D.Raycast(RightOrigin.position, Vector3.right, raycastDistanceHoriz, rayLayerMask);
         rayhit4 = Physics2D.Raycast(LeftOrigin.position, Vector3.left, raycastDistanceHoriz, rayLayerMask);
@@ -120,12 +126,16 @@ public class EntityMovement : MonoBehaviour
             Debug.DrawRay(RightOrigin.position, Vector3.left * raycastDistanceHoriz, Color.red, 0.01f);
         }
 
+        
+
         if(rayhit3.collider!=null && rayhit3.collider.tag == "ground")
         {
+            DirectionAction?.Invoke();
             return true;
         }
         else if (rayhit4.collider != null && rayhit4.collider.tag == "ground")
         {
+            DirectionAction?.Invoke();
             return true;
         }
         else
@@ -148,5 +158,10 @@ public class EntityMovement : MonoBehaviour
         temp.x = movementDirection * walkSpeed * entityAbility.getModifiedMovementSpeed();
         temp.y = 0;
         rb.velocity = temp;
+    }
+
+    public bool getGrounded()
+    {
+        return grounded;
     }
 }

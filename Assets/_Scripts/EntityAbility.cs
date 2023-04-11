@@ -7,6 +7,7 @@ public class EntityAbility : MonoBehaviour
 
     [Header("Ability Data")]
     [SerializeField] private Ability ability;
+    [SerializeField] private GameObject DeathFX;
 
     public float getModifiedMovementSpeed()
     {
@@ -17,25 +18,54 @@ public class EntityAbility : MonoBehaviour
         return ability.fallSpeedModifier;
     }
 
-    public void updateAbility(Ability ability)
+    public bool updateAbility(Ability ability)
     {
         if(this.ability == GameManager.instance().detonator)
         {
-            return;
+            return false;
         }
         if (this.ability == GameManager.instance().blocker)
         {
             if(ability== GameManager.instance().detonator)
             {
+                float fallspeed = this.ability.fallSpeedModifier;
+                float movespeed = this.ability.movementSpeedModifier;
                 this.ability = ability;
-                return;
+                this.ability.fallSpeedModifier = fallspeed;
+                this.ability.movementSpeedModifier = movespeed;
+                return true;
             }
             else
             {
-                return;
+                return false;
             }
         }
-        this.ability = ability;
+
+        
+        if(ability == GameManager.instance().detonator)
+        {
+            float fallspeed = this.ability.fallSpeedModifier;
+            float movespeed = this.ability.movementSpeedModifier;
+            this.ability = ability;
+            this.ability.fallSpeedModifier = fallspeed;
+            this.ability.movementSpeedModifier = movespeed;
+        }
+        else if (ability == GameManager.instance().blocker)
+        {
+            this.gameObject.tag = "ground";
+            this.gameObject.layer = LayerMask.NameToLayer("Ground");
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+            this.ability = ability;
+        }
+        else
+        {
+            this.ability = ability;
+        }
+        
+
+        return true;
+
+
     }
 
     public Ability getCurrentAbility()
@@ -45,6 +75,7 @@ public class EntityAbility : MonoBehaviour
 
     public void death()
     {
+        Instantiate(DeathFX, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 }
