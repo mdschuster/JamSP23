@@ -175,7 +175,9 @@ public class EntityMovement : MonoBehaviour
         }
         if(collision.gameObject.tag == "grinder")
         {
+            //Not a good place to do this stuff, but it works
             GameManager.instance().score();
+            collision.gameObject.GetComponentInParent<Grinder>().updateBloody();
             entity.death();
         }
     }
