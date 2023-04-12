@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee986b410aa5b44949c54264058e477c, type: 3}
   m_Name: Detonator
   m_EditorClassIdentifier: 
-  movementSpeedModifier: 0
+  movementSpeedModifier: 1
   fallSpeedModifier: 1
   hasTimer: 1
   time: 3

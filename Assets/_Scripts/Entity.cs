@@ -82,7 +82,7 @@ public class Entity : MonoBehaviour
             }
             else
             {
-                TimerText.text = timer.ToString("#");
+                TimerText.text = Mathf.CeilToInt(timer).ToString();
                 timer -= Time.deltaTime;
             }
         } 
