@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private int maxEntites;
 
     [Header("UI")]
+    public bool useUI;
     public TMP_Text scoreText;
 
     private int Score;
@@ -70,7 +71,10 @@ public class GameManager : MonoBehaviour
 
     public void score()
     {
-        Score++;
-        scoreText.text = "Harvested:\n" +Score+"/" + spawnManager.getMaxEntites();
+        if (useUI)
+        {
+            Score++;
+            scoreText.text = "Harvested:\n" + Score + "/" + spawnManager.getMaxEntites();
+        }
     }
 }
