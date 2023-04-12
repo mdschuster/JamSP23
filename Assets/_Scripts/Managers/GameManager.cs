@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public bool useUI;
     public TMP_Text scoreText;
+    public Canvas GameOverCanvas;
+    public TMP_Text FinalScoreText;
 
     private int Score;
 
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameOverCanvas.gameObject.SetActive(false);
         Score = -1;
         score();
         selectedAbility = faller;
@@ -76,5 +80,16 @@ public class GameManager : MonoBehaviour
             Score++;
             scoreText.text = "Harvested:\n" + Score + "/" + spawnManager.getMaxEntites();
         }
+    }
+
+    public void onReturnClick()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void GameOver()
+    {
+        GameOverCanvas.gameObject.SetActive(true);
+        FinalScoreText.text = "" + Score + "/" + spawnManager.getMaxEntites();
     }
 }

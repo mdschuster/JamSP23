@@ -52,6 +52,10 @@ public class SpawnManager : MonoBehaviour
     public void removeEntity(GameObject go)
     {
         entites.Remove(go);
+        if (entites.Count == 0)
+        {
+            GameManager.instance().GameOver();
+        }
     }
 
     public int getMaxEntites()
