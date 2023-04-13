@@ -146,12 +146,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerText: {fileID: 1536441798233000565}
   TimerCanvas: {fileID: 8279052897064540536}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   animator: {fileID: 2080497248086788611}
   graphic: {fileID: 8570526751578175375}
   falling: 1
   blocking: 0
   exploding: 0
   walking: 0
+  SplatAudioObject: {fileID: 3258683889660425824, guid: 740269fc35a514835aaa3c75b6786578, type: 3}
+  PopAudioObject: {fileID: 5190112389344251911, guid: d8218898755ef4e958d8f9f3e9304deb, type: 3}
 --- !u!114 &-5647290903331226435
 MonoBehaviour:
   m_ObjectHideFlags: 0

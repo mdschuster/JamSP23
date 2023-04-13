@@ -1402,6 +1402,7 @@ MonoBehaviour:
   scoreText: {fileID: 131502076}
   GameOverCanvas: {fileID: 1516910605}
   FinalScoreText: {fileID: 1276819366}
+  DoorAudioObject: {fileID: 4879621574984732366, guid: 59cf709695f384bc2a1e4c9e34fb0ee7, type: 3}
 --- !u!1 &1072429167
 GameObject:
   m_ObjectHideFlags: 0

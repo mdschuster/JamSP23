@@ -30,6 +30,10 @@ public class Entity : MonoBehaviour
     private float fallTime;
     public System.Action<GameObject> onDeathAction;
 
+    [Header("Audio")]
+    public GameObject SplatAudioObject;
+    public GameObject PopAudioObject;
+
 
 
 
@@ -124,8 +128,18 @@ public class Entity : MonoBehaviour
 
     public void death()
     {
+
         onDeathAction?.Invoke(this.gameObject);
         Instantiate(ability.DeathFX, this.transform.position, Quaternion.identity);
+        if (ability.getCurrentAbility() == GameManager.instance().detonator)
+        {
+            Instantiate(PopAudioObject, this.transform.position, Quaternion.identity);
+
+        }
+        else
+        {
+            Instantiate(SplatAudioObject, this.transform.position, Quaternion.identity);
+        }
         Destroy(this.gameObject);
     }
 

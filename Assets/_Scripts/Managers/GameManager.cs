@@ -46,9 +46,13 @@ public class GameManager : MonoBehaviour
 
     private Ability selectedAbility;
 
+    public GameObject DoorAudioObject;
+
     // Start is called before the first frame update
     void Start()
     {
+        //play door opening sound
+        Instantiate(DoorAudioObject, this.transform.position, Quaternion.identity);
         GameOverCanvas.gameObject.SetActive(false);
         Score = -1;
         score();
