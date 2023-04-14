@@ -35,6 +35,7 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         if (musicClip != null)
         {
             audioSource.clip = musicClip;
